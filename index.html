@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Form Pengaduan Kerusakan & Kebutuhan Fasilitas</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f3f4f6;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 40px auto;
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #1f2937;
+    }
+
+    label {
+        font-weight: bold;
+        margin-top: 15px;
+        display: block;
+        color: #374151;
+    }
+
+    input, textarea, select {
+        width: 100%;
+        padding: 12px;
+        margin-top: 6px;
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        font-size: 15px;
+    }
+
+    button {
+        width: 100%;
+        background: #2563eb;
+        color: white;
+        padding: 14px;
+        border: none;
+        border-radius: 8px;
+        margin-top: 20px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    button:hover {
+        background: #1d4ed8;
+    }
+
+    .note {
+        background: #eef2ff;
+        border-left: 4px solid #6366f1;
+        padding: 10px;
+        margin-top: 20px;
+        border-radius: 6px;
+        color: #374151;
+    }
+</style>
+
+</head>
+<body>
+
+<div class="container">
+    <h2>Form Pengaduan Kerusakan & Kebutuhan Fasilitas</h2>
+
+    <form id="myForm" action="https://formspree.io/f/mvgorelb" method="POST">
+
+        <label>Nama Pelapor</label>
+        <input type="text" name="nama" required>
+
+        <label>Unit / Departemen</label>
+        <input type="text" name="unit" required>
+
+        <label>Lokasi Kerusakan</label>
+        <input type="text" name="lokasi" required>
+
+        <label>Jenis Fasilitas</label>
+        <select name="jenis_fasilitas" required>
+            <option value="">-- Pilih Fasilitas --</option>
+            <option>Listrik</option>
+            <option>AC / Ventilasi</option>
+            <option>Mebel (Meja/Kursi)</option>
+            <option>Toilet</option>
+            <option>Peralatan IT</option>
+            <option>Ruang Kelas</option>
+            <option>Lainnya</option>
+        </select>
+
+        <label>Deskripsi Kerusakan / Kebutuhan</label>
+        <textarea name="deskripsi" rows="5" required></textarea>
+
+        <label>Prioritas</label>
+        <select name="prioritas" required>
+            <option value="">-- Pilih Prioritas --</option>
+            <option>Rendah</option>
+            <option>Sedang</option>
+            <option>Tinggi (Urgent)</option>
+        </select>
+
+        <button type="submit">Kirim Aduan</button>
+
+        <div class="note">
+            Setelah mengirim, laporan otomatis masuk ke email GA/FM dan tercatat
+            dalam Google Sheets melalui Formspree.
+        </div>
+
+    </form>
+</div>
+
+<script>
+document.getElementById("myForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    const form = e.target;
+
+    fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+    }).then(response => {
+        window.location.href = "success.html";   // redirect
+    }).catch(error => {
+        alert("Terjadi kesalahan, coba lagi.");
+    });
+});
+</script>
+
+</body>
+</html>
