@@ -3,92 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Aduan Kerusakan & Kebutuhan Fasilitas</title>
+    <title>Form Pengaduan Kerusakan & Kebutuhan Fasilitas</title>
 
     <style>
         body {
+            background: #f4f6f9;
             font-family: Arial, sans-serif;
-            background: #f5f7fa;
             margin: 0;
             padding: 0;
+            display: flex;
+            justify-content: center;
         }
+
         .container {
-            max-width: 650px;
+            width: 100%;
+            max-width: 850px;
             background: white;
-            margin: 40px auto;
-            padding: 25px;
-            border-radius: 12px;
+            padding: 30px;
+            margin: 20px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-radius: 12px;
         }
-        h2 {
+
+        .logo {
             text-align: center;
-            color: #00337C;
+            margin-bottom: 20px;
         }
+
+        .logo img {
+            width: 160px;
+            height: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #1b2a64;
+            margin-bottom: 30px;
+        }
+
         label {
             font-weight: bold;
-            margin-top: 12px;
             display: block;
+            margin: 15px 0 5px;
         }
+
         input, select, textarea {
             width: 100%;
             padding: 12px;
-            margin-top: 6px;
-            border-radius: 8px;
-            border: 1px solid #aaa;
-        }
-        button {
-            width: 100%;
-            background: #00337C;
-            color: white;
-            padding: 14px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-top: 20px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
             font-size: 16px;
         }
+
+        textarea {
+            height: 150px;
+        }
+
+        button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 6px;
+            background: #ff6600;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
         button:hover {
-            background: #001F4D;
+            background: #e55b00;
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <h2>Form Aduan Kerusakan / Kebutuhan Fasilitas</h2>
 
-        <form 
-            action="https://formspree.io/f/mqavdqry"
-            method="POST"
-            enctype="multipart/form-data"
-        >
+<div class="container">
 
-            <label>Nama Pelapor</label>
-            <input type="text" name="nama_pelapor" required>
-
-            <label>Unit / Ruangan</label>
-            <input type="text" name="unit_ruangan" required>
-
-            <label>Jenis Aduan</label>
-            <select name="jenis_aduan" required>
-                <option value="">-- Pilih Jenis Aduan --</option>
-                <option>Kerusakan Fasilitas</option>
-                <option>Kebutuhan Fasilitas</option>
-                <option>Kebersihan</option>
-                <option>Lainnya</option>
-            </select>
-
-            <label>Deskripsi Aduan</label>
-            <textarea name="deskripsi" rows="4" required></textarea>
-
-            <label>Upload Foto / Dokumentasi (max 25 MB)</label>
-            <input type="file" name="foto" accept="image/*,application/pdf" required>
-
-            <button type="submit">Kirim Aduan</button>
-
-            <input type="hidden" name="_redirect" value="success.html">
-
-        </form>
+    <!-- LOGO -->
+    <div class="logo">
+        <img src="assets/kai-logo.png" alt="Logo PT KAI">
     </div>
+
+    <h1>Form Pengaduan Kerusakan & Kebutuhan Fasilitas</h1>
+
+    <form id="pengaduanForm">
+
+        <label>Nama Pelapor</label>
+        <input type="text" id="nama" required>
+
+        <label>Divisi / Unit Kerja</label>
+        <input type="text" id="divisi" required>
+
+        <label>Lokasi Kerusakan / Kebutuhan</label>
+        <input type="text" id="lokasi" required>
+
+        <label>Jenis Pengaduan</label>
+        <select id="jenisPengaduan" required>
+            <option value="">-- Pilih --</option>
+            <option>Kerusakan Fasilitas</option>
+            <option>Kebutuhan Fasilitas</option>
+            <option>Kebersihan</option>
+            <option>Keamanan</option>
+        </select>
+
+        <label>Deskripsi Permasalahan</label>
+        <textarea id="deskripsi" required></textarea>
+
+        <label>Upload Foto Dokumentasi (Max 25 MB)</label>
+        <input type="file" id="foto" accept="image/*">
+
+        <button type="submit">Kirim Pengaduan</button>
+    </form>
+
+</div>
+
+<script>
+document.getElementById("pengaduanForm").addEventListener("submit", async function(e){
+    e.preventDefault();
+
+    alert("Pengaduan berhasil dikirim!");
+});
+</script>
+
 </body>
 </html>
